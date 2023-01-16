@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string('CarMake');
-            $table->string('CarModel');
-            $table->string('Category');
-            $table->double('Year');
-
+            $table->string('car_make');
+            $table->string('car_model');
+            $table->string('category');
+            $table->string('year');
             $table->timestamps();
         });
 

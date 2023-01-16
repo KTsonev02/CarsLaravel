@@ -40,15 +40,7 @@ class CarCrudController extends CrudController
      * @return void
      */
     protected function setupListOperation()
-
-
     {
-        CRUD::column('CarMake');
-        CRUD::column('CarModel');
-        CRUD::column('Category');
-        CRUD::column('Year');
-        CRUD::column('created_at');
-        CRUD::column('updated_at');
         $this->crud->set('show.setFromDb', false);
         $this->crud->addColumns($this->getFieldsData(TRUE));
 
@@ -71,10 +63,8 @@ class CarCrudController extends CrudController
     {
         CRUD::setValidation(CarRequest::class);
 
-        CRUD::field('CarMake');
-        CRUD::field('CarModel');
-        CRUD::field('Category');
-        CRUD::field('Year');
+        $this->crud->set('show.setFromDb', false);
+        $this->crud->addColumns($this->getFieldsData(TRUE));
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -97,8 +87,26 @@ class CarCrudController extends CrudController
     private function getFieldsData($show = FALSE)
     {
         return [
-
-
+            [
+                'label' => 'Car Make',
+                'type' => 'text',
+                'name' => 'car_make'
+            ],
+            [
+                'label' => 'Car Model',
+                'type' => 'text',
+                'name' => 'car_model'
+            ],
+            [
+                'label' => 'Category',
+                'type' => 'text',
+                'name' => 'category'
+            ],
+            [
+                'label' => 'Year',
+                'type' => ($show ? 'text' : 'number'),
+                'name' => 'year'
+            ],
             [
                 'label' => "Car Image",
                 'name' => "image",

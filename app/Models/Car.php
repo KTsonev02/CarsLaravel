@@ -39,8 +39,6 @@ class Car extends Model
         });
     }
 
-
-
     public function setImageAttribute($value)
     {
         $attribute_name = "image";
@@ -68,6 +66,16 @@ class Car extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
+
+    public function carMake()
+    {
+        return $this->hasOne(CarMake::class);
+    }
+
+//    public function category()
+//    {
+//        return $this->hasOne(Category::class);
+//    }
 
     /*
     |--------------------------------------------------------------------------
