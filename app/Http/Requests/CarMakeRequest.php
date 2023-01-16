@@ -25,7 +25,7 @@ class CarMakeRequest extends FormRequest
     public function rules()
     {
         return [
-             'make' => 'required|min:5|max:50'
+             'make' => 'required|min:3|max:50'
         ];
     }
 
