@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\CarRequest;
+use App\Http\Requests\CategoryRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class CarCrudController
+ * Class CategoryCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class CarCrudController extends CrudController
+class CategoryCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,11 +26,9 @@ class CarCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Car::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/car');
-        CRUD::setEntityNameStrings('car', 'cars');
-
-        $this->crud->addFields($this->getFieldsData());
+        CRUD::setModel(\App\Models\Category::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/category');
+        CRUD::setEntityNameStrings('category', 'categories');
     }
 
     /**
@@ -41,8 +39,7 @@ class CarCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        $this->crud->set('show.setFromDb', false);
-        $this->crud->addColumns($this->getFieldsData(TRUE));
+        CRUD::setFromDb();
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -57,14 +54,10 @@ class CarCrudController extends CrudController
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
-
-
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(CarRequest::class);
-
-        $this->crud->set('show.setFromDb', false);
-        $this->crud->addColumns($this->getFieldsData(TRUE));
+        CRUD::setValidation(CategoryRequest::class);
+        CRUD::setFromDb();
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
@@ -82,49 +75,5 @@ class CarCrudController extends CrudController
     protected function setupUpdateOperation()
     {
         $this->setupCreateOperation();
-    }
-
-    protected function setupShowOperation()
-    {
-        $this->crud->set('show.setFromDb', false);
-        $this->crud->addColumns($this->getFieldsData(TRUE));
-    }
-
-    private function getFieldsData($show = FALSE)
-    {
-        return [
-            [
-                'label' => 'Car Make',
-                'type' => ($show ? 'select' : 'select_multiple'),
-                'name' => 'carMakes',
-                'attribute' => 'make',
-                'pivot' => true
-            ],
-            [
-                'label' => 'Car Model',
-                'type' => 'text',
-                'name' => 'car_model',
-            ],
-            [
-                'label' => 'Category',
-                'type' => ($show ? 'select' : 'select_multiple'),
-                'name' => 'categories',
-                'attribute' => 'name',
-                'pivot' => true
-            ],
-            [
-                'label' => 'Year',
-                'type' => ($show ? 'text' : 'number'),
-                'name' => 'year'
-            ],
-            [
-                'label' => "Car Image",
-                'name' => "image",
-                'type' => ($show ? 'view' : 'upload'),
-                'view' => 'partials/image',
-                'upload' => true,
-            ]
-        ];
-
     }
 }
