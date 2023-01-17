@@ -26,7 +26,7 @@ class CarRequest extends FormRequest
     {
         return [
             'carMakes' => 'required',
-            'car_model' => 'required|min:3|max:50',
+            'car_model' => 'required|min:2|max:50',
             'categories' => 'required',
             'year' => 'required|integer|min:1900|max:2050',
             'image' => 'nullable|image'
