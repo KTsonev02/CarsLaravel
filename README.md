@@ -14,7 +14,7 @@
 <p align="center"><img src="/Screenshots/Screenshot3.png" width="800" alt="screenshot"></a></p>
 При добавяне на нов автомобил полетата Car Make и Category са падащи и можеш да избереш само от добавените вече марка и категория. 
 
-За добавяне на нова марка и категория са страниците Car makes и Categories. При тях също освен добавяне може да се редактират и изтриват данните в тях.
+За добавяне на нова марка и категория са страниците Car makes и Categories. При тях също освен добавяне може да се редактират и изтриват данните от тях.
 
 <p align="center"><img src="/Screenshots/Screenshot6.png" width="800" alt="screenshot"></a></p>
 <p align="center"><img src="/Screenshots/Screenshot7.png" width="800" alt="screenshot"></a></p>
