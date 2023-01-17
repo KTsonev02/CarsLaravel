@@ -32,4 +32,17 @@ class CarController extends Controller
 
         return view('cars.show', compact('car', 'carMakes', 'categories'));
     }
+    public function search(Request $request)
+    {
+        $model = is_null($request['model']) ? '' : $request['model'];
+        $year = is_null($request['year']) ? '' : $request['year'];
+
+        $cars = Car::query()
+            ->where('car_model', 'like', "%$model%")
+            ->where('year', 'like', "%$year%")
+            ->get();
+
+        return view('welcome', compact('cars'));
+    }
+
 }

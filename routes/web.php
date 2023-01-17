@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CarController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::get('cars/show/{car}', [\App\Http\Controllers\CarController::class, 'show'])->name('cars.show');
+Route::post('cars/search', [CarController::class, 'search'])->name('cars.search');
